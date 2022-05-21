@@ -9,11 +9,12 @@ A user can assign tasks to each hour, and those tasks are assigned to local
 storage. Dates and times are supplied by momentjs.
 
 This one was actually fairly straightforward to write. I'd like to have managed it
-with even fewer lines, but this was condensed as I could make it.
+with even fewer lines, but this was clean as I could make it.
 
 ### Link:
 
-[repo](https://www.example.com)
+[repo](https://leftyloosey.github.io)
+
 
 ### Screenshot:
 
