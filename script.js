@@ -40,28 +40,55 @@ function nowColor() {Object.keys(hourRows).forEach(key => {
         }
 })}
 
+// $("#btn9").click(function(){
+//     clickAlarm($('#event9'), $('#input9'), input9)
+// })
+
 $("#btn9").click(function(){
-    clickFunction($('#event9'), $('#input9'), input9)
+    clickAlarm($('#event9'), $('#input9'), input9, 'stored9')
 })
 
-function clickFunction(a,b,c) {
+// function clickAlarm(a,b,c) {
+//     c.push($(b).val())
+//     console.log(c, "in function")
+//     $(a).html(c.join("<br>"))
+//     $(b).val('')
+//     $(a).append(b)
+    // localStorage.setItem('stored9', JSON.stringify(c))
+    // var storage = localStorage.getItem(JSON.stringify('stored9'))
+    // console.log(storage)
+    // localStorage.setItem('stored9', c)
+    // var storage = localStorage.getItem('stored9')
+    // console.log(storage)
+
+// }
+
+// function toStorage() {
+//     localStorage.setItem('stored9', c)
+//     var storage = localStorage.getItem('stored9')
+//     console.log(storage)
+// }
+
+function init(a,b) {
+    var storage = localStorage.getItem(a)
+    console.log(storage)
+    $(b).prepend(storage)
+}
+init('stored9', $('#event9'))
+nowColor()
+
+
+
+
+function clickAlarm(a,b,c,d) {
     c.push($(b).val())
     console.log(c, "in function")
     $(a).html(c.join("<br>"))
     $(b).val('')
     $(a).append(b)
-    // localStorage.setItem('stored9', JSON.stringify(c))
-    // var storage = localStorage.getItem(JSON.stringify('stored9'))
-    // console.log(storage)
-    localStorage.setItem('stored9', c)
-    var storage = localStorage.getItem('stored9')
+  
+    localStorage.setItem(d, c)
+    var storage = localStorage.getItem(d)
     console.log(storage)
 
 }
-
-function init() {
-    $('#event9').text(localStorage.getItem('stored9'))
-}
-
-nowColor()
-init()
