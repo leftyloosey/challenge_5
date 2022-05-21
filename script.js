@@ -1,6 +1,9 @@
 var now = moment()
 var hour = now.format("H")
 
+$("#currentDay").text(now.format("MMM Do, YYYY"))
+$("#currentHour").text(now.format("h:mm a"))
+
 var input9 = []
 var input10 = []
 var input11 = []
@@ -10,11 +13,6 @@ var input2 = []
 var input3 = []
 var input4 = []
 var input5 = []
-
-
-$("#currentDay").text(now.format("MMM Do, YYYY"))
-$("#currentHour").text(now.format("h:mm a"))
-
 
 const hourRows = {
     row9: $("#row9"),
@@ -28,6 +26,8 @@ const hourRows = {
     row5: $("#row5"),
 }
 console.log(hour)
+
+// sets the colors of the hourly rows
 function nowColor() {Object.keys(hourRows).forEach(key => {
     if ($(hourRows[key]).attr("data-hour") == hour) {
         ($(hourRows[key]).attr("class", "table-secondary"))
@@ -40,55 +40,65 @@ function nowColor() {Object.keys(hourRows).forEach(key => {
         }
 })}
 
-// $("#btn9").click(function(){
-//     clickAlarm($('#event9'), $('#input9'), input9)
-// })
-
-$("#btn9").click(function(){
-    clickAlarm($('#event9'), $('#input9'), input9, 'stored9')
-})
-
-// function clickAlarm(a,b,c) {
-//     c.push($(b).val())
-//     console.log(c, "in function")
-//     $(a).html(c.join("<br>"))
-//     $(b).val('')
-//     $(a).append(b)
-    // localStorage.setItem('stored9', JSON.stringify(c))
-    // var storage = localStorage.getItem(JSON.stringify('stored9'))
-    // console.log(storage)
-    // localStorage.setItem('stored9', c)
-    // var storage = localStorage.getItem('stored9')
-    // console.log(storage)
-
-// }
-
-// function toStorage() {
-//     localStorage.setItem('stored9', c)
-//     var storage = localStorage.getItem('stored9')
-//     console.log(storage)
-// }
-
+// gets and prints the information from storage
 function init(a,b) {
     var storage = localStorage.getItem(a)
     console.log(storage)
     $(b).prepend(storage)
 }
-init('stored9', $('#event9'))
-nowColor()
 
-
-
-
-function clickAlarm(a,b,c,d) {
-    c.push($(b).val())
-    console.log(c, "in function")
-    $(a).html(c.join("<br>"))
-    $(b).val('')
-    $(a).append(b)
+//takes row input and sends it to storage
+function clickAlarm(row,text,array,local) {
+    array.push($(text).val())
+    console.log(array, "in function")
+    $(row).html(array.join("<br>"))
+    $(text).val('')
+    $(row).append(text)
   
-    localStorage.setItem(d, c)
-    var storage = localStorage.getItem(d)
+    localStorage.setItem(local, array)
+    var storage = localStorage.getItem(local)
     console.log(storage)
-
 }
+
+
+// i wanted to do this without so many lines. that would be a really 
+// complicated kind of loop and i don't know how to write it. advice?
+$("#btn9").click(function(){
+    clickAlarm($('#event9'), $('#input9'), input9, 'stored9')
+})
+$("#btn10").click(function(){
+    clickAlarm($('#event10'), $('#input10'), input10, 'stored10')
+})
+$("#btn11").click(function(){
+    clickAlarm($('#event11'), $('#input11'), input11, 'stored11')
+})
+$("#btn12").click(function(){
+    clickAlarm($('#event12'), $('#input12'), input12, 'stored12')
+})
+$("#btn1").click(function(){
+    clickAlarm($('#event1'), $('#input1'), input1, 'stored1')
+})
+$("#btn2").click(function(){
+    clickAlarm($('#event2'), $('#input2'), input2, 'stored2')
+})
+$("#btn3").click(function(){
+    clickAlarm($('#event3'), $('#input3'), input3, 'stored3')
+})
+$("#btn4").click(function(){
+    clickAlarm($('#event4'), $('#input4'), input4, 'stored4')
+})
+$("#btn5").click(function(){
+    clickAlarm($('#event5'), $('#input5'), input5, 'stored5')
+})
+
+init('stored9', $('#event9'))
+init('stored10', $('#event10'))
+init('stored11', $('#event11'))
+init('stored12', $('#event12'))
+init('stored1', $('#event1'))
+init('stored2', $('#event2'))
+init('stored3', $('#event3'))
+init('stored4', $('#event4'))
+init('stored5', $('#event5'))
+
+nowColor()
